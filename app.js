@@ -8,6 +8,8 @@ const {resolvers} = require('./resolvers');
 
 const {connectDB} = require('./db');
 
+const API_PORT = process.env.PORT || 3001;
+
 const app = express();
 connectDB();
 
@@ -27,8 +29,9 @@ async function  start() {
 
     apolloServer.applyMiddleware({app})
 
-    app.listen(process.env.PORT || 3000, function () {
-        console.log('servidor iniciado', process.env.PORT || 3000);
+    
+    app.listen(API_PORT, function () {
+        console.log('servidor iniciado', API_PORT);
     })
 }
 
