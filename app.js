@@ -27,10 +27,8 @@ async function  start() {
 
     apolloServer.applyMiddleware({app})
 
-    const API_PORT = process.env.PORT || 3001
-
-    app.listen(process.env.PORT || 3000, function () {
-        console.log('servidor iniciado', process.env.PORT || 3000);
+    app.listen(process.env.PORT, function () {
+        console.log('servidor iniciado', process.env.PORT);
     })
 }
 
