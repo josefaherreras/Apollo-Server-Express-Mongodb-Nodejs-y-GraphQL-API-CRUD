@@ -19,6 +19,19 @@ module.exports = app;
 
 async function  start() {
 
+    mongoose.connect(
+
+        MONGODB, {
+          useNewUrlParser: true,
+          useUnifiedTopology: true,
+          useFindAndModify: false,
+          useCreateIndex: true
+        }, (err, res) => {
+          if (err) return console.log("Hubo un error en la BD ", err);
+          console.log("BD online");
+        }
+      );
+
    const apolloServer =  new ApolloServer({
         typeDefs: typeDefs,
         resolvers : resolvers
