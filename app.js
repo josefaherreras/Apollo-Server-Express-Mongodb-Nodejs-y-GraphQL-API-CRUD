@@ -30,9 +30,13 @@ async function  start() {
     apolloServer.applyMiddleware({app})
 
     
-    app.listen(API_PORT, function () {
-        console.log('servidor iniciado', API_PORT);
-    })
+    //app.listen(API_PORT, function () {
+    //    console.log('servidor iniciado', API_PORT);
+    //})
+    const server = app.listen(process.env.PORT || 5000, () => {
+        const port = server.address().port;
+        console.log(`Express is working on port ${port}`);
+      });
 }
 
 start();
