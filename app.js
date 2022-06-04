@@ -8,8 +8,6 @@ const {resolvers} = require('./resolvers');
 
 const {connectDB} = require('./db');
 
-const API_PORT = process.env.PORT || 3001;
-
 const app = express();
 connectDB();
 
@@ -18,19 +16,6 @@ app.get('/', (req, res) => res.send('Welcome to my api'));
 module.exports = app;
 
 async function  start() {
-
-    mongoose.connect(
-
-        MONGODB, {
-          useNewUrlParser: true,
-          useUnifiedTopology: true,
-          useFindAndModify: false,
-          useCreateIndex: true
-        }, (err, res) => {
-          if (err) return console.log("Hubo un error en la BD ", err);
-          console.log("BD online");
-        }
-      );
 
    const apolloServer =  new ApolloServer({
         typeDefs: typeDefs,
@@ -42,14 +27,11 @@ async function  start() {
 
     apolloServer.applyMiddleware({app})
 
-    
-    //app.listen(API_PORT, function () {
-    //    console.log('servidor iniciado', API_PORT);
-    //})
-    const server = app.listen(process.env.PORT || 5000, () => {
-        const port = server.address().port;
-        console.log(`Express is working on port ${port}`);
-      });
+    const API_PORT = process.env.PORT || 3001
+
+    app.listen(process.env.PORT || 3000, function () {
+        console.log('servidor iniciado', process.env.PORT || 3000);
+    })
 }
 
 start();
